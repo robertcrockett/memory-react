@@ -1,12 +1,11 @@
-function Footer() {
-  const initial_msg =
-    "You will have a few seconds to memorize the blue random cells";
-  const initial_btn = "Start Game";
+import Message from "./Message";
+import PlayAgain from "./PlayAgain";
 
+function Footer() {
   return (
     <>
-      <div className='message'>{initial_msg}</div>
-      <button className='button'>{initial_btn}</button>
+      <Message />
+      <PlayAgain />
     </>
   );
 }
