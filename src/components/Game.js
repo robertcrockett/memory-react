@@ -7,7 +7,9 @@ function Game(props) {
       {utils.range(1, 25).map((number) => (
         <Cell
           key={number}
+          cellValue={number}
           isBlue={props.selected_cells.includes(number) ? true : false}
+          onClick={props.onCellClick}
         />
       ))}
     </div>

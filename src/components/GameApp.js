@@ -10,10 +10,15 @@ function GameApp() {
     utils.shuffle(utils.range(1, 25)).slice(0, 6)
   );
 
+  const onCellClick = (number) => {
+    // TODO: Create a game status to check (Starting, Displaying, Active, Over)
+    console.log("Cell click", { number });
+  };
+
   return (
     <>
       <div className='game'>
-        <Game selected_cells={blueCells} />
+        <Game selected_cells={blueCells} onCellClick={onCellClick} />
         <Footer />
       </div>
     </>
