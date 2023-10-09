@@ -14,7 +14,7 @@ function GameApp() {
   return (
     <>
       <div className='game'>
-        <Game />
+        <Game selected_cells={six_random_cells} />
         <Footer />
       </div>
     </>
