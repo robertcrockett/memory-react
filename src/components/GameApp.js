@@ -6,15 +6,14 @@ import "./GameApp.css";
 function GameApp() {
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCellsLeft, setMatchedCellsLeft] = useState(6);
-
-  // Test Shuffle array
-  const six_random_cells = utils.shuffle(utils.range(1, 25)).slice(0, 6);
-  console.log(six_random_cells);
+  const [blueCells, setBlueCells] = useState(
+    utils.shuffle(utils.range(1, 25)).slice(0, 6)
+  );
 
   return (
     <>
       <div className='game'>
-        <Game selected_cells={six_random_cells} />
+        <Game selected_cells={blueCells} />
         <Footer />
       </div>
     </>
