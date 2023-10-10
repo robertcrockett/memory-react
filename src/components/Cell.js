@@ -2,8 +2,13 @@ function Cell(props) {
   return (
     <button
       className='cell'
-      style={{ width: "20%", backgroundColor: colors["unselected"] }}
-      onClick={() => props.onClick(props.cellValue)}
+      style={{
+        width: "20%",
+        backgroundColor: colors[props.cellStatus(props.cellValue)],
+      }}
+      onClick={() =>
+        props.onClick(props.cellValue, props.cellStatus(props.cellValue))
+      }
     ></button>
   );
 }
