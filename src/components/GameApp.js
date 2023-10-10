@@ -6,15 +6,19 @@ import "./GameApp.css";
 function GameApp() {
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCellsLeft, setMatchedCellsLeft] = useState(6);
+  const [blueCells, setBlueCells] = useState(
+    utils.shuffle(utils.range(1, 25)).slice(0, 6)
+  );
 
-  // Test Shuffle array
-  const six_random_cells = utils.shuffle(utils.range(1, 25)).slice(0, 6);
-  console.log(six_random_cells);
+  const onCellClick = (number) => {
+    // TODO: Create a game status to check (Starting, Displaying, Active, Over)
+    console.log("Cell click", { number });
+  };
 
   return (
     <>
       <div className='game'>
-        <Game />
+        <Game selected_cells={blueCells} onCellClick={onCellClick} />
         <Footer />
       </div>
     </>

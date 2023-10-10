@@ -1,10 +1,16 @@
+import Cell from "./Cell";
 import { utils } from "./GameApp";
 
-function Game() {
+function Game(props) {
   return (
     <div className='grid'>
       {utils.range(1, 25).map((number) => (
-        <div key={number} className='cell' style={{ width: "20%" }}></div>
+        <Cell
+          key={number}
+          cellValue={number}
+          isBlue={props.selected_cells.includes(number) ? true : false}
+          onClick={props.onCellClick}
+        />
       ))}
     </div>
   );
