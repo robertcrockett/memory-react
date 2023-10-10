@@ -8,6 +8,7 @@ function Game(props) {
         <Cell
           key={number}
           cellValue={number}
+          cellStatus={props.status}
           isBlue={props.selected_cells.includes(number) ? true : false}
           onClick={props.onCellClick}
         />
