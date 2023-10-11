@@ -7,6 +7,8 @@ function GameApp(props) {
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCells, setMatchedCells] = useState(0);
   const [selectedCells, setSelectedCells] = useState([]);
+  const [challengeSecondsLeft, setChallengeSecondsLeft] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(10);
   const [blueCells, setBlueCells] = useState(
     utils.shuffle(utils.range(1, 25)).slice(0, 6)
   );
@@ -14,12 +16,28 @@ function GameApp(props) {
   const resetGame = () => {
     setIncorrectGuessesRemaining(3);
     setMatchedCells(0);
-    blueCells(utils.shuffle(utils.range(1, 25)).slice(0, 6));
+    setSelectedCells([]);
+    setChallengeSecondsLeft(5);
+    setSecondsLeft(10);
+    setBlueCells(utils.shuffle(utils.range(1, 25)).slice(0, 6));
   };
+
+  const gameStatus =
+    // Nested ternary operators. This is less readable then if/else statement (IMO)
+    matchedCells === blueCells.length
+      ? "won"
+      : challengeSecondsLeft > 0
+      ? "challenge"
+      : secondsLeft === 0
+      ? "lost"
+      : "active";
 
   const cellStatus = (number) => {
     // TODO: Game State will drive logic here. For example, if the game is in a state where blue cells should
     // display, then only blue and unselected will display. While the game is running, cells can be selected.
+    if (gameStatus === "challenge") {
+      return blueCells.includes(number) ? "blue" : "unselected";
+    }
 
     // If the cell has not been selected yet
     if (!selectedCells.includes(number)) {
@@ -38,6 +56,12 @@ function GameApp(props) {
   const onCellClick = (number) => {
     // TODO: Create a game status to check (Starting, Displaying, Active, Over)
     console.log("Cell click", { number });
+    console.log(gameStatus);
+    console.log(challengeSecondsLeft);
+
+    if (gameStatus !== "active") {
+      return;
+    }
 
     // If the cell has already been selected
     if (selectedCells.includes(number)) {
@@ -63,7 +87,6 @@ function GameApp(props) {
           onCellClick={onCellClick}
           status={cellStatus}
         />
-        <Footer />
       </div>
     </>
   );
