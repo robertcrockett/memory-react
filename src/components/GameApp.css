@@ -45,3 +45,10 @@
   float: right;
   margin-top: 1rem;
 }
+
+.timer {
+  color: #666;
+  float: right;
+  margin-top: 1rem;
+  margin-right: 3px;
+}
