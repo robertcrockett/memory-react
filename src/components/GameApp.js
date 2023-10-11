@@ -4,6 +4,7 @@ import Game from "./Game";
 import "./GameApp.css";
 
 function GameApp(props) {
+  const [started, setStarted] = useState(false);
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCells, setMatchedCells] = useState(0);
   const [selectedCells, setSelectedCells] = useState([]);
@@ -24,7 +25,9 @@ function GameApp(props) {
 
   const gameStatus =
     // Nested ternary operators. This is less readable then if/else statement (IMO)
-    matchedCells === blueCells.length
+    started === false
+      ? "inactive"
+      : matchedCells === blueCells.length
       ? "won"
       : challengeSecondsLeft > 0
       ? "challenge"
@@ -53,13 +56,17 @@ function GameApp(props) {
     return "correct";
   };
 
+  const onStartClick = () => {
+    console.log("Started");
+  };
+
   const onCellClick = (number) => {
     // TODO: Create a game status to check (Starting, Displaying, Active, Over)
     console.log("Cell click", { number });
     console.log(gameStatus);
     console.log(challengeSecondsLeft);
 
-    if (gameStatus !== "active") {
+    if (gameStatus === "inactive" || gameStatus !== "active") {
       return;
     }
 
@@ -85,6 +92,7 @@ function GameApp(props) {
         <Game
           selected_cells={blueCells}
           onCellClick={onCellClick}
+          onStartClick={onStartClick}
           status={cellStatus}
         />
       </div>

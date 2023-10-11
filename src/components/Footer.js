@@ -1,8 +1,10 @@
-function Footer() {
+function Footer(props) {
   return (
     <>
       <div className='message'>{messages.initial}</div>
-      <button className='button'>{initial_btn}</button>
+      <button className='button' onClick={props.onClick}>
+        {initial_btn}
+      </button>
     </>
   );
 }

@@ -16,7 +16,7 @@ function Game(props) {
           />
         ))}
       </div>
-      <Footer />
+      <Footer onClick={props.onStartClick} />
     </>
   );
 }
