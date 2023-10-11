@@ -34,7 +34,7 @@ function GameApp(props) {
     setIncorrectGuessesRemaining(3);
     setMatchedCells(0);
     setSelectedCells([]);
-    setChallengeSecondsLeft(5);
+    setChallengeSecondsLeft(4);
     setSecondsLeft(10);
     setBlueCells(utils.shuffle(utils.range(1, 25)).slice(0, 6));
   };
@@ -74,7 +74,7 @@ function GameApp(props) {
 
   const onStartClick = () => {
     setStarted(true);
-    setChallengeSecondsLeft(5);
+    resetGame();
   };
 
   const onCellClick = (number) => {

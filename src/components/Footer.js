@@ -29,14 +29,13 @@ function Footer(props) {
   return (
     <>
       <div className='message'>{displayMessage()}</div>
-      <button
-        className='button'
-        onClick={props.onClick}
-        hidden={isHidden()}
-        // props.gameStatus === "challenge" || props.gameStatus === "active"
-      >
-        {initial_btn}
-      </button>
+      {props.gameStatus !== "challenge" || props.gameStatus !== "active" ? (
+        <button className='button' onClick={props.onClick} hidden={isHidden()}>
+          {initial_btn}
+        </button>
+      ) : (
+        <div>Timer</div>
+      )}
     </>
   );
 }
