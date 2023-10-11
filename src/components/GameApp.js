@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Footer from "./Footer";
 import Game from "./Game";
 import "./GameApp.css";
 
@@ -42,12 +41,12 @@ function GameApp(props) {
   const gameStatus =
     // Nested ternary operators. This is less readable then if/else statement (IMO)
     started === false
-      ? "inactive"
+      ? "new"
       : matchedCells === blueCells.length
       ? "won"
       : challengeSecondsLeft > 0
       ? "challenge"
-      : secondsLeft === 0
+      : secondsLeft === 0 || incorrectGuessesRemaining === 0
       ? "lost"
       : "active";
 
@@ -78,12 +77,8 @@ function GameApp(props) {
   };
 
   const onCellClick = (number) => {
-    // TODO: Create a game status to check (Starting, Displaying, Active, Over)
-    console.log("Cell click", { number });
-    console.log(gameStatus);
-    console.log(challengeSecondsLeft);
-
-    if (gameStatus === "inactive" || gameStatus !== "active") {
+    // If the game has yet to be initialized and is not currently active, ignore any clicks
+    if (gameStatus === "new" || gameStatus !== "active") {
       return;
     }
 
