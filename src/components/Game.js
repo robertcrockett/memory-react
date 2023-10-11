@@ -16,7 +16,12 @@ function Game(props) {
           />
         ))}
       </div>
-      <Footer onClick={props.onStartClick} gameStatus={props.gameStatus} />
+      <Footer
+        onClick={props.onStartClick}
+        gameStatus={props.gameStatus}
+        challengeSecondsLeft={props.challengeSecondsLeft}
+        secondsLeft={props.secondsLeft}
+      />
     </>
   );
 }

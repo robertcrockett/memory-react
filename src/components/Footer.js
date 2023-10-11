@@ -26,15 +26,23 @@ function Footer(props) {
     return messages.initial;
   };
 
+  const displayTimer = () => {
+    if (props.gameStatus === "challenge") {
+      return props.challengeSecondsLeft;
+    }
+
+    return props.secondsLeft;
+  };
+
   return (
     <>
       <div className='message'>{displayMessage()}</div>
-      {props.gameStatus !== "challenge" || props.gameStatus !== "active" ? (
-        <button className='button' onClick={props.onClick} hidden={isHidden()}>
+      {props.gameStatus !== "challenge" && props.gameStatus !== "active" ? (
+        <button className='button' onClick={props.onClick}>
           {initial_btn}
         </button>
       ) : (
-        <div>Timer</div>
+        <div className='timer'>{displayTimer()}</div>
       )}
     </>
   );

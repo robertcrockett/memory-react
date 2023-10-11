@@ -107,6 +107,8 @@ function GameApp(props) {
           onStartClick={onStartClick}
           cellStatus={cellStatus}
           gameStatus={gameStatus}
+          challengeSecondsLeft={challengeSecondsLeft}
+          secondsLeft={secondsLeft}
         />
       </div>
     </>
