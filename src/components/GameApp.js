@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Game from "./Game";
 import "./GameApp.css";
@@ -13,6 +13,22 @@ function GameApp(props) {
   const [blueCells, setBlueCells] = useState(
     utils.shuffle(utils.range(1, 25)).slice(0, 6)
   );
+
+  useEffect(() => {
+    if (started === true && challengeSecondsLeft > 0) {
+      const timerId = setTimeout(() => {
+        setChallengeSecondsLeft(challengeSecondsLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timerId);
+    }
+
+    if (started === true && challengeSecondsLeft === 0 && secondsLeft > 0) {
+      const timerId = setTimeout(() => {
+        setSecondsLeft(secondsLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timerId);
+    }
+  });
 
   const resetGame = () => {
     setIncorrectGuessesRemaining(3);
@@ -57,7 +73,8 @@ function GameApp(props) {
   };
 
   const onStartClick = () => {
-    console.log("Started");
+    setStarted(true);
+    setChallengeSecondsLeft(5);
   };
 
   const onCellClick = (number) => {
@@ -93,7 +110,8 @@ function GameApp(props) {
           selected_cells={blueCells}
           onCellClick={onCellClick}
           onStartClick={onStartClick}
-          status={cellStatus}
+          cellStatus={cellStatus}
+          gameStatus={gameStatus}
         />
       </div>
     </>

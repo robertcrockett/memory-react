@@ -10,13 +10,13 @@ function Game(props) {
           <Cell
             key={number}
             cellValue={number}
-            cellStatus={props.status}
+            cellStatus={props.cellStatus}
             isBlue={props.selected_cells.includes(number) ? true : false}
             onClick={props.onCellClick}
           />
         ))}
       </div>
-      <Footer onClick={props.onStartClick} />
+      <Footer onClick={props.onStartClick} gameStatus={props.gameStatus} />
     </>
   );
 }
