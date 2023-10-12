@@ -1,11 +1,4 @@
 function Footer(props) {
-  const isHidden = () => {
-    if (props.gameStatus === "challenge" || props.gameStatus === "active") {
-      return true;
-    }
-    return false;
-  };
-
   const displayMessage = () => {
     if (props.gameStatus === "challenge") {
       return messages.start;

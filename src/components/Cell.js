@@ -1,14 +1,12 @@
-function Cell(props) {
+function Cell({ cellStatus, cellValue, onClick }) {
   return (
     <button
       className='cell'
       style={{
         width: "20%",
-        backgroundColor: colors[props.cellStatus(props.cellValue)],
+        backgroundColor: colors[cellStatus(cellValue)],
       }}
-      onClick={() =>
-        props.onClick(props.cellValue, props.cellStatus(props.cellValue))
-      }
+      onClick={() => onClick(cellValue, cellStatus(cellValue))}
     ></button>
   );
 }
