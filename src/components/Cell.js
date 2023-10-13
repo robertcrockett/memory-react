@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {cellStatus, cellValue, onClick} props Destructed property
+ *      values for various properties of the Cell.
+ * @returns A JSX button object representing a Cell.
+ */
 function Cell({ cellStatus, cellValue, onClick }) {
   return (
     <button
@@ -11,9 +17,10 @@ function Cell({ cellStatus, cellValue, onClick }) {
   );
 }
 
+// Export the Cell component
 export default Cell;
 
-// Color Theme
+// Colors array representing the various states of the Cell
 const colors = {
   unselected: "white",
   blue: "lightblue",
