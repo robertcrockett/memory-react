@@ -2,6 +2,16 @@
 
 This is a simple memory react game that displays a randomly selected set of cells which the user must remember and correctly select.
 
+## Sample Screenshots
+
+### Challenge
+
+![Challenge Screen](/public/challenge.png)
+
+### Gameplay
+
+![Game Play Screen](/public/game_play.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
