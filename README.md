@@ -6,9 +6,13 @@ This is a simple memory react game that displays a randomly selected set of cell
 
 ### Challenge
 
+The game displays a memory challenge for 3 seconds in which the user must remember which cells are highlighted blue.
+
 ![Challenge Screen](/public/challenge.png)
 
 ### Gameplay
+
+The user can then select cells based on the challenge that was previously displayed. The user has 10 seconds or 3 incorrect guesses to remember the correct cells.
 
 ![Game Play Screen](/public/game_play.png)
 
