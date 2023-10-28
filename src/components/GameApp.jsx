@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Game from "./Game";
 import "./GameApp.css";
 
-function GameApp(props) {
+function GameApp() {
   const [started, setStarted] = useState(false);
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCells, setMatchedCells] = useState(0);
@@ -99,19 +99,17 @@ function GameApp(props) {
   };
 
   return (
-    <>
-      <div className='game'>
-        <Game
-          selected_cells={blueCells}
-          onCellClick={onCellClick}
-          onStartClick={onStartClick}
-          cellStatus={cellStatus}
-          gameStatus={gameStatus}
-          challengeSecondsLeft={challengeSecondsLeft}
-          secondsLeft={secondsLeft}
-        />
-      </div>
-    </>
+    <div className='game'>
+      <Game
+        selected_cells={blueCells}
+        onCellClick={onCellClick}
+        onStartClick={onStartClick}
+        cellStatus={cellStatus}
+        gameStatus={gameStatus}
+        challengeSecondsLeft={challengeSecondsLeft}
+        secondsLeft={secondsLeft}
+      />
+    </div>
   );
 }
 
