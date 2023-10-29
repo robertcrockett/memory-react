@@ -1,6 +1,7 @@
 import Cell from "./Cell";
 import Footer from "./Footer";
 import { utils } from "./GameApp";
+import PropTypes from "prop-types";
 
 function Game(props) {
   return (
@@ -25,5 +26,15 @@ function Game(props) {
     </>
   );
 }
+
+Game.propTypes = {
+  selected_cells: PropTypes.array.isRequired,
+  onCellClick: PropTypes.func.isRequired,
+  onStartClick: PropTypes.func.isRequired,
+  cellStatus: PropTypes.func.isRequired,
+  gameStatus: PropTypes.string.isRequired,
+  challengeSecondsLeft: PropTypes.number.isRequired,
+  secondsLeft: PropTypes.number.isRequired,
+};
 
 export default Game;
