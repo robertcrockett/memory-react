@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 /**
  *
  * @param {cellStatus, cellValue, onClick} props Destructed property
@@ -16,6 +18,12 @@ function Cell({ cellStatus, cellValue, onClick }) {
     ></button>
   );
 }
+
+Cell.propTypes = {
+  cellStatus: PropTypes.func.isRequired,
+  cellValue: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 // Export the Cell component
 export default Cell;
