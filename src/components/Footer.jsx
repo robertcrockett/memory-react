@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Footer(props) {
   const displayMessage = () => {
     if (props.gameStatus === "challenge") {
@@ -40,6 +42,13 @@ function Footer(props) {
     </>
   );
 }
+
+Footer.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  gameStatus: PropTypes.string.isRequired,
+  challengeSecondsLeft: PropTypes.number.isRequired,
+  secondsLeft: PropTypes.number.isRequired,
+};
 
 export default Footer;
 
