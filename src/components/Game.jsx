@@ -1,6 +1,6 @@
 import Cell from "./Cell";
 import Footer from "./Footer";
-import { utils } from "./GameApp";
+import { utils } from "../shared/constants";
 import PropTypes from "prop-types";
 
 function Game(props) {
