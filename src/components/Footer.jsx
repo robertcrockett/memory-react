@@ -33,11 +33,17 @@ function Footer(props) {
     <>
       <div className='message'>{displayMessage()}</div>
       {props.gameStatus !== "challenge" && props.gameStatus !== "active" ? (
-        <button className='button' onClick={props.onClick}>
+        <button
+          className='button'
+          data-testid='start_button'
+          onClick={props.onClick}
+        >
           {initial_btn}
         </button>
       ) : (
-        <div className='timer'>{displayTimer()}</div>
+        <div className='timer' data-testid='timer'>
+          {displayTimer()}
+        </div>
       )}
     </>
   );
