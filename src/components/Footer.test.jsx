@@ -6,18 +6,23 @@ function footerClick() {
   return "true";
 }
 
-describe("renders the Footer component", () => {
+describe("renders the Footer component when the Game is Not Active", () => {
   it("renders a Footer", () => {
     render(
       <Footer
         onClick={() => footerClick}
-        gameStatus='challenge'
+        gameStatus='initial'
         challengeSecondsLeft={1}
         secondsLeft={5}
       />
     );
 
-    const footerButton = screen.getByRole("button");
+    // Test to validate the start button is rendered
+    const footerButton = screen.getByTestId("start_button");
     expect(footerButton).toBeTypeOf("object");
+
+    // Test to validate the timer is not rendered
+    const footerTimer = screen.queryByTestId("timer");
+    expect(footerTimer).toBeNull();
   });
 });
