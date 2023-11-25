@@ -10,6 +10,7 @@ function Cell({ cellStatus, cellValue, onClick }) {
   return (
     <button
       className='cell'
+      data-testid='cell'
       style={{
         width: "20%",
         backgroundColor: colors[cellStatus(cellValue)],
