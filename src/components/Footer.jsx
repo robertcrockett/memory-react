@@ -1,43 +1,41 @@
 import PropTypes from "prop-types";
 
-function Footer(props) {
+/**
+ *
+ * @param {gameStatus, challengeSecondsLeft, secondsLeft, onClick} props Destructed property
+ *      values for various properties of the Footer.
+ * @returns A JSX button object representing a Footer.
+ */
+function Footer({ gameStatus, challengeSecondsLeft, secondsLeft, onClick }) {
   const displayMessage = () => {
-    if (props.gameStatus === "challenge") {
-      return messages.start;
-    }
+    switch (gameStatus) {
+      case "challenge":
+        return messages.start;
+      case "active":
+        return messages.mid_game;
+      case "lost":
+        return messages.lost;
+      case "won":
+        return messages.won;
 
-    if (props.gameStatus === "active") {
-      return messages.mid_game;
+      default:
+        return messages.initial;
     }
-
-    if (props.gameStatus === "lost") {
-      return messages.lost;
-    }
-
-    if (props.gameStatus === "won") {
-      return messages.won;
-    }
-
-    return messages.initial;
   };
 
   const displayTimer = () => {
-    if (props.gameStatus === "challenge") {
-      return props.challengeSecondsLeft;
+    if (gameStatus === "challenge") {
+      return challengeSecondsLeft;
     }
 
-    return props.secondsLeft;
+    return secondsLeft;
   };
 
   return (
     <>
       <div className='message'>{displayMessage()}</div>
-      {props.gameStatus !== "challenge" && props.gameStatus !== "active" ? (
-        <button
-          className='button'
-          data-testid='start_button'
-          onClick={props.onClick}
-        >
+      {gameStatus !== "challenge" && gameStatus !== "active" ? (
+        <button className='button' data-testid='start_button' onClick={onClick}>
           {initial_btn}
         </button>
       ) : (
