@@ -13,7 +13,4 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/test/setup.ts"],
   },
-  // esbuild: {
-  //   jsxInject: `import React from 'react'`,
-  // },
 });
