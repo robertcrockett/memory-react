@@ -1,3 +1,23 @@
+# Memory React Game
+
+This is a simple memory react game that displays a randomly selected set of cells which the user must remember and correctly select.
+
+## Sample Screenshots
+
+### Challenge
+
+The game displays a memory challenge for 3 seconds in which the user must remember which cells are highlighted blue.
+
+![Challenge Screen](/public/challenge.png)
+
+### Gameplay
+
+The user can then select cells based on the challenge that was previously displayed. The user has 10 seconds or 3 incorrect guesses to remember the correct cells.
+
+![Game Play Screen](/public/game_play.png)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 # React + Vite
 
 To run:
