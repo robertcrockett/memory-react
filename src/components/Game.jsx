@@ -3,7 +3,15 @@ import Footer from "./Footer";
 import { utils } from "../shared/constants";
 import PropTypes from "prop-types";
 
-function Game(props) {
+function Game({
+  cellStatus,
+  selected_cells,
+  onCellClick,
+  onStartClick,
+  gameStatus,
+  challengeSecondsLeft,
+  secondsLeft,
+}) {
   return (
     <>
       <div className='grid'>
@@ -11,17 +19,17 @@ function Game(props) {
           <Cell
             key={number}
             cellValue={number}
-            cellStatus={props.cellStatus}
-            isBlue={props.selected_cells.includes(number) ? true : false}
-            onClick={props.onCellClick}
+            cellStatus={cellStatus}
+            isBlue={selected_cells.includes(number) ? true : false}
+            onClick={onCellClick}
           />
         ))}
       </div>
       <Footer
-        onClick={props.onStartClick}
-        gameStatus={props.gameStatus}
-        challengeSecondsLeft={props.challengeSecondsLeft}
-        secondsLeft={props.secondsLeft}
+        onClick={onStartClick}
+        gameStatus={gameStatus}
+        challengeSecondsLeft={challengeSecondsLeft}
+        secondsLeft={secondsLeft}
       />
     </>
   );
