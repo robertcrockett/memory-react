@@ -33,16 +33,22 @@ function Footer({ gameStatus, challengeSecondsLeft, secondsLeft, onClick }) {
 
   return (
     <>
-      <div className='message'>{displayMessage()}</div>
-      {gameStatus !== "challenge" && gameStatus !== "active" ? (
-        <button className='button' data-testid='start_button' onClick={onClick}>
-          {initial_btn}
-        </button>
-      ) : (
-        <div className='timer' data-testid='timer'>
-          {displayTimer()}
-        </div>
-      )}
+      <div className='footer' data-testid='footer'>
+        <div className='message'>{displayMessage()}</div>
+        {gameStatus !== "challenge" && gameStatus !== "active" ? (
+          <button
+            className='button'
+            data-testid='start_button'
+            onClick={onClick}
+          >
+            {initial_btn}
+          </button>
+        ) : (
+          <div className='timer' data-testid='timer'>
+            {displayTimer()}
+          </div>
+        )}
+      </div>
     </>
   );
 }
