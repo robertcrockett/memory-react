@@ -31,5 +31,17 @@ This project uses:
 
 # Vitest
 
-To run:
-yarn test <ComponentName>
+To run all tests
+
+```code
+yarn test
+```
+
+To run tests on a specific component:
+yarn test _ComponentName_
+
+For example:
+
+```code
+yarn test Footer
+```
