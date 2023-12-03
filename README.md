@@ -34,7 +34,7 @@ This project uses:
 To run all tests
 
 ```code
-` yarn test
+yarn test
 ```
 
 To run tests on a specific component:
@@ -43,5 +43,5 @@ yarn test _ComponentName_
 For example:
 
 ```code
-` yarn test Footer
+yarn test Footer
 ```
