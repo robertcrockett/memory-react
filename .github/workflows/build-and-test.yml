@@ -24,4 +24,4 @@ jobs:
       - name: Run tests
         run: yarn test
       - name: Test GitHub url
-        run: echo "GitHub API URL: ${{ github.api_url }}"
+        run: echo "GitHub API URL - ${{ github.api_url }}"
