@@ -23,5 +23,6 @@ jobs:
         run: yarn build
       - name: Run tests
         run: yarn test
+      # Testing the SBOM API /repos/{owner}/{repo}/dependency-graph/sbom  
       - name: Test GitHub url
-        run: echo "GitHub API URL - ${{ github.api_url }}"
+        run: echo "GitHub SBOM API URL - ${{ github.api_url }}/repos/${{ github.repository_owner }}/${{ github.repository }}/dependency-graph/sbom"
