@@ -3,6 +3,12 @@ import Footer from "./Footer";
 import { utils } from "../shared/constants";
 import PropTypes from "prop-types";
 
+/**
+ * 
+ * @param {cellStatus, selected_cells, onCellClick, onStartClick, gameStatus, challengeSecondsLeft, secondsLeft} props Destructed property
+ *      values for various properties of the Game.
+ * @returns A JSX object representing the Game Board
+ */
 function Game({
   cellStatus,
   selected_cells,
