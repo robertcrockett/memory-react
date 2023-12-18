@@ -3,6 +3,10 @@ import Game from "./Game";
 import "./GameApp.css";
 import { utils } from "../shared/constants";
 
+/**
+ * 
+ * @returns A JSX object representing the Game Board
+ */
 function GameApp() {
   const [started, setStarted] = useState(false);
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
