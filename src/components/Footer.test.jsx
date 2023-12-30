@@ -1,16 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import Footer from "./Footer";
 
-function footerClick() {
-  return "true";
-}
+const footerClickMock = vi.fn();
 
 describe("Renders the Footer component when the Game is not active", () => {
   it("renders a Footer", () => {
     render(
       <Footer
-        onClick={() => footerClick}
+        onClick={() => footerClickMock}
         gameStatus='initial'
         challengeSecondsLeft={1}
         secondsLeft={5}
@@ -31,7 +29,7 @@ describe("Renders the Footer component when the Game is active", () => {
   it("renders a Footer", () => {
     render(
       <Footer
-        onClick={() => footerClick}
+        onClick={() => footerClickMock}
         gameStatus='challenge'
         challengeSecondsLeft={1}
         secondsLeft={5}
