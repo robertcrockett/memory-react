@@ -34,7 +34,7 @@ function Footer({ gameStatus, challengeSecondsLeft, secondsLeft, onClick }) {
   return (
     <>
       <div className='footer' data-testid='footer'>
-        <div className='message'>{displayMessage()}</div>
+        <div className='message' data-testid='message'>{displayMessage()}</div>
         {gameStatus !== "challenge" && gameStatus !== "active" ? (
           <button
             className='button'
