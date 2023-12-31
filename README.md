@@ -45,3 +45,15 @@ For example:
 ```code
 yarn test Footer
 ```
+
+## Vitest Coverage
+
+To run coverage use:
+
+```code
+yarn coverage
+```
+
+The current state of coverage.
+
+![Current Code Coverage](/public/current_coverage.png)
