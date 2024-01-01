@@ -20,6 +20,7 @@ describe("Renders the Cell component when unselected", () => {
     const cellButton = screen.getByRole("button");
     expect(cellButton).toBeTypeOf("object");
     expect(cellButton.style.backgroundColor).toBe("white");
+    expect(cellButton.style.width).toBe("20%");
   });
 });
 
@@ -37,6 +38,7 @@ describe("Renders the Cell component when it is part of challenge", () => {
     const cellButton = screen.getByRole("button");
     expect(cellButton).toBeTypeOf("object");
     expect(cellButton.style.backgroundColor).toBe("lightblue");
+    expect(cellButton.style.width).toBe("20%");
   });
 });
 
@@ -54,6 +56,7 @@ describe("Renders the Cell component when correctly selected", () => {
     const cellButton = screen.getByRole("button");
     expect(cellButton).toBeTypeOf("object");
     expect(cellButton.style.backgroundColor).toBe("lightgreen");
+    expect(cellButton.style.width).toBe("20%");
   });
 });
 
@@ -71,5 +74,6 @@ describe("Renders the Cell component when incorrectly selected", () => {
     const cellButton = screen.getByRole("button");
     expect(cellButton).toBeTypeOf("object");
     expect(cellButton.style.backgroundColor).toBe("lightcoral");
+    expect(cellButton.style.width).toBe("20%");
   });
 });

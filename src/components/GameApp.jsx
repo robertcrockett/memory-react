@@ -104,7 +104,7 @@ function GameApp() {
   };
 
   return (
-    <div className='game'>
+    <div className='game' data-testid='game'>
       <Game
         selected_cells={blueCells}
         onCellClick={onCellClick}
