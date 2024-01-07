@@ -3,6 +3,10 @@ import Game from "./Game";
 import "./GameApp.css";
 import { utils } from "../shared/constants";
 
+/**
+ * A custom hook to manage the game state
+ * @returns state values and functions to manage the game state
+ */
 function useGameState() {
   // Managing State and Hooks
   const [started, setStarted] = useState(false);
@@ -57,8 +61,8 @@ function useGameState() {
 }
 
 /**
- * 
- * @returns A JSX object representing the Game Board
+ * Game App Component
+ * @returns A JSX object representing the Game App
  */
 function GameApp() {
   const { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick } = useGameState();
