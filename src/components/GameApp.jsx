@@ -3,11 +3,8 @@ import Game from "./Game";
 import "./GameApp.css";
 import { utils } from "../shared/constants";
 
-/**
- * 
- * @returns A JSX object representing the Game Board
- */
-function GameApp() {
+function useGameState() {
+  // Managing State and Hooks
   const [started, setStarted] = useState(false);
   const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
   const [matchedCells, setMatchedCells] = useState(0);
@@ -34,7 +31,8 @@ function GameApp() {
     }
   });
 
-  const resetGame = () => {
+  const setInitialGameState = () => {
+    setStarted(true);
     setIncorrectGuessesRemaining(3);
     setMatchedCells(0);
     setSelectedCells([]);
@@ -42,6 +40,28 @@ function GameApp() {
     setSecondsLeft(10);
     setBlueCells(utils.shuffle(utils.range(1, 25)).slice(0, 6));
   };
+
+  const setCellClick = (number) => {
+    // Add the selected number to the set of selected cells
+    setSelectedCells(selectedCells.concat(number));
+
+    // Check to see if the selection was correct or not
+    if (blueCells.includes(number)) {
+      setMatchedCells(matchedCells + 1);
+    } else {
+      setIncorrectGuessesRemaining(incorrectGuessesRemaining - 1);
+    }
+  }
+
+  return { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick }
+}
+
+/**
+ * 
+ * @returns A JSX object representing the Game Board
+ */
+function GameApp() {
+  const { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick } = useGameState();
 
   const gameStatus =
     // Nested ternary operators. This is less readable then if/else statement (IMO)
@@ -77,8 +97,7 @@ function GameApp() {
   };
 
   const onStartClick = () => {
-    setStarted(true);
-    resetGame();
+    setInitialGameState();
   };
 
   const onCellClick = (number) => {
@@ -92,15 +111,7 @@ function GameApp() {
       return;
     }
 
-    // Add the selected number to the set of selected cells
-    setSelectedCells(selectedCells.concat(number));
-
-    // Check to see if the selection was correct or not
-    if (blueCells.includes(number)) {
-      setMatchedCells(matchedCells + 1);
-    } else {
-      setIncorrectGuessesRemaining(incorrectGuessesRemaining - 1);
-    }
+    setCellClick(number);
   };
 
   return (
