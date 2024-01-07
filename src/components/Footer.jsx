@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
 /**
- *
+ * Footer Component
+ * 
  * @param {gameStatus, challengeSecondsLeft, secondsLeft, onClick} props Destructed property
  *      values for various properties of the Footer.
  * @returns A JSX button object representing a Footer.

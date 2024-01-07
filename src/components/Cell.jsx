@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
 /**
- *
+ * Cell Component
+ * 
  * @param {cellStatus, cellValue, onClick} props Destructed property
  *      values for various properties of the Cell.
  * @returns A JSX button object representing a Cell.
