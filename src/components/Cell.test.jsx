@@ -77,3 +77,26 @@ describe("Renders the Cell component when incorrectly selected", () => {
     expect(cellButton.style.width).toBe("20%");
   });
 });
+
+// Test for rendering a Cell after a click event
+describe("Renders the Cell component after a click event", () => {
+  it("renders a cell", () => {
+    render(
+      <Cell
+        cellValue={4}
+        cellStatus={() => cellStatusMock.mockReturnValue("unselected").apply()}
+        onClick={() => cellClickMock}
+      />
+    );
+
+    const cellButton = screen.getByTestId("cell");
+    expect(cellButton).toBeTypeOf("object");
+    expect(cellButton.style.backgroundColor).toBe("white");
+    expect(cellButton.style.width).toBe("20%");
+
+    // Create a spy on the cell click event
+    const cellClickSpy = vi.spyOn(cellButton, "click");
+    cellButton.click(screen.getByTestId);
+    expect(cellClickSpy).toBeCalledTimes(1);
+  });
+});
