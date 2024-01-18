@@ -29,8 +29,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "vite": "^5.0.11",
-    "vitest": "^1.2.0",
-    "@vitest/coverage-v8": "^1.2.0",
-    "@vitest/ui": "^1.2.0"
+    "vitest": "^1.2.1",
+    "@vitest/coverage-v8": "^1.2.1",
+    "@vitest/ui": "^1.2.1"
   }
 }
