@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import Game from "./Game";
+import { MemoizedGame } from "./Game";
 
 const onCellClickMock = vi.fn();
 const onStartClickMock = vi.fn();
@@ -9,7 +9,7 @@ const onStartClickMock = vi.fn();
 describe("Renders the Game component", () => {
   it("renders a Game", () => {
     render(
-      <Game
+      <MemoizedGame
         cellStatus={() => {
           return 1;
         }}

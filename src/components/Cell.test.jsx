@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import Cell from "./Cell";
+import { MemoizedCell } from "./Cell";
 
 // Create a mock function for cellStatus
 const cellStatusMock = vi.fn();
@@ -10,7 +10,7 @@ const cellClickMock = vi.fn();
 describe("Renders the Cell component when unselected", () => {
   it("renders a cell", () => {
     render(
-      <Cell
+      <MemoizedCell
         cellValue={1}
         cellStatus={() => cellStatusMock.mockReturnValue("unselected").apply()}
         onClick={() => cellClickMock}
@@ -28,7 +28,7 @@ describe("Renders the Cell component when unselected", () => {
 describe("Renders the Cell component when it is part of challenge", () => {
   it("renders a cell", () => {
     render(
-      <Cell
+      <MemoizedCell
         cellValue={1}
         cellStatus={() => cellStatusMock.mockReturnValue("blue").apply()}
         onClick={() => cellClickMock}
@@ -46,7 +46,7 @@ describe("Renders the Cell component when it is part of challenge", () => {
 describe("Renders the Cell component when correctly selected", () => {
   it("renders a cell", () => {
     render(
-      <Cell
+      <MemoizedCell
         cellValue={2}
         cellStatus={() => cellStatusMock.mockReturnValue("correct").apply()}
         onClick={() => cellClickMock}
@@ -64,7 +64,7 @@ describe("Renders the Cell component when correctly selected", () => {
 describe("Renders the Cell component when incorrectly selected", () => {
   it("renders a cell", () => {
     render(
-      <Cell
+      <MemoizedCell
         cellValue={3}
         cellStatus={() => cellStatusMock.mockReturnValue("incorrect").apply()}
         onClick={() => cellClickMock}
@@ -82,7 +82,7 @@ describe("Renders the Cell component when incorrectly selected", () => {
 describe("Renders the Cell component after a click event", () => {
   it("renders a cell", () => {
     render(
-      <Cell
+      <MemoizedCell
         cellValue={4}
         cellStatus={() => cellStatusMock.mockReturnValue("unselected").apply()}
         onClick={() => cellClickMock}
