@@ -1,5 +1,5 @@
 import { useGameState } from "../hooks/useGameState";
-import Game from "./Game";
+import { MemoizedGame } from "./Game";
 import "./GameApp.css";
 
 /**
@@ -63,7 +63,7 @@ function GameApp() {
 
   return (
     <div className='game' data-testid='game'>
-      <Game
+      <MemoizedGame
         selected_cells={blueCells}
         onCellClick={onCellClick}
         onStartClick={onStartClick}

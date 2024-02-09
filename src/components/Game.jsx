@@ -1,4 +1,5 @@
-import Cell from "./Cell";
+import React from "react";
+import { MemoizedCell } from "./Cell";
 import Footer from "./Footer";
 import { utils } from "../shared/constants";
 import PropTypes from "prop-types";
@@ -23,7 +24,7 @@ function Game({
     <>
       <div className='grid'>
         {utils.range(1, 25).map((number) => (
-          <Cell
+          <MemoizedCell
             key={number}
             cellValue={number}
             cellStatus={cellStatus}
@@ -52,4 +53,4 @@ Game.propTypes = {
   secondsLeft: PropTypes.number.isRequired,
 };
 
-export default Game;
+export const MemoizedGame = React.memo(Game);

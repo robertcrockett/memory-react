@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -28,7 +29,7 @@ Cell.propTypes = {
 };
 
 // Export the Cell component
-export default Cell;
+export const MemoizedCell = React.memo(Cell);
 
 // Colors array representing the various states of the Cell
 const colors = {
