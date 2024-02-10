@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -61,7 +62,7 @@ Footer.propTypes = {
   secondsLeft: PropTypes.number.isRequired,
 };
 
-export default Footer;
+export const MemoizedFooter = React.memo(Footer);
 
 // Available messages
 const messages = {

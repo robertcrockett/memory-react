@@ -1,6 +1,6 @@
 import React from "react";
 import { MemoizedCell } from "./Cell";
-import Footer from "./Footer";
+import { MemoizedFooter } from "./Footer";
 import { utils } from "../shared/constants";
 import PropTypes from "prop-types";
 
@@ -33,7 +33,7 @@ function Game({
           />
         ))}
       </div>
-      <Footer
+      <MemoizedFooter
         onClick={onStartClick}
         gameStatus={gameStatus}
         challengeSecondsLeft={challengeSecondsLeft}
