@@ -9,12 +9,12 @@ export default [
     ...js.configs.recommended,
     ignores: [
       '!.*',
-      '**/assets/.*',
-      '**/node_modules/.*',
-      '**/dist/.*',
-      '**/coverage/.*',
+      '**/assets/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      './coverage/**',
       '*.json',
-      '**/.git/.*'
+      '**/.git/**'
     ],
     rules: {
       "no-console": "warn", // Warns about console.log statements
