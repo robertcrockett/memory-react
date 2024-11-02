@@ -1,5 +1,5 @@
 // useCountdown.test.js
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react'
 import { act } from 'react';
 import { expect, it, describe, beforeEach, afterEach } from 'vitest';
 import useCountdown from './useCountdown';
