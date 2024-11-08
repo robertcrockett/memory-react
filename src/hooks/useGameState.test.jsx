@@ -1,7 +1,15 @@
 import { renderHook } from '@testing-library/react'
 import { act } from 'react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { useGameState } from './useGameState';
+
+// Mocking utils
+vi.mock('../shared/constants', () => ({
+    utils: {
+        shuffle: (array) => array,
+        range: (start, end) => Array.from({ length: end - start + 1 }, (_, i) => i + start),
+    },
+}));
 
 describe('useGameState hook', () => {
     it('initializes with correct default values', () => {
@@ -55,5 +63,36 @@ describe('useGameState hook', () => {
 
         expect(result.current.incorrectGuessesRemaining).toBe(2);
         expect(result.current.selectedCells).toContain(nonBlueCell);
+    });
+
+    it('counts down challenge seconds when started', async () => {
+        const { result } = renderHook(() => useGameState());
+
+        act(() => {
+            result.current.setInitialGameState();
+            result.current.started = true;
+        });
+
+        await act(async () => {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 3 seconds
+        });
+
+        expect(result.current.challengeSecondsLeft).toBe(3);
+    });
+
+    it('counts down game seconds when challenge is over', async () => {
+        const { result } = renderHook(() => useGameState());
+
+        act(() => {
+            result.current.setInitialGameState();
+            result.current.started = true;
+            result.current.challengeSecondsLeft = 0
+        });
+
+        await act(async () => {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 3 seconds
+        });
+
+        expect(result.current.secondsLeft).toBe(10);
     });
 });
