@@ -87,6 +87,7 @@ describe('useGameState hook', () => {
             result.current.setInitialGameState();
             result.current.started = true;
             result.current.challengeSecondsLeft = 0
+            result.current.secondsLeft = 11;
         });
 
         await act(async () => {
