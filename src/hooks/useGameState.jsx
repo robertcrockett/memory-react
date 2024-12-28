@@ -56,5 +56,17 @@ export function useGameState() {
     }
   }
 
-  return { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick }
+  const updateStarted = (value) => {
+    setStarted(value);
+  };
+
+  const updateSecondsLeft = (value) => {
+    setSecondsLeft(value);
+  }
+
+  const updateChallengeSecondsLeft = (value) => {
+    setChallengeSecondsLeft(value);
+  }
+
+  return { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick, updateStarted, updateSecondsLeft, updateChallengeSecondsLeft };
 }
