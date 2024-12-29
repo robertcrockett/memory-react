@@ -85,16 +85,16 @@ describe('useGameState hook', () => {
 
         act(() => {
             result.current.setInitialGameState();
-            result.current.started = true;
-            result.current.challengeSecondsLeft = 0
-            result.current.secondsLeft = 11;
+            result.current.updateStarted(true);
+            result.current.updateChallengeSecondsLeft(0);
+            result.current.updateSecondsLeft(6);
         });
 
         await act(async () => {
             await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 3 seconds
         });
 
-        expect(result.current.secondsLeft).toBe(10);
+        expect(result.current.secondsLeft).toBe(5);
     });
 
     it('counts down game seconds when challenge is over and secondsLeft is greater than 1', async () => {
