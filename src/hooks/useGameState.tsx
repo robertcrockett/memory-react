@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react";
 import { utils } from "../shared/constants";
 
+interface GameState {
+  started: boolean;
+  incorrectGuessesRemaining: number;
+  matchedCells: number;
+  selectedCells: number[];
+  challengeSecondsLeft: number;
+  secondsLeft: number;
+  blueCells: number[];
+  setInitialGameState: () => void;
+  setCellClick: (number: number) => void;
+  updateStarted: (value: boolean) => void;
+  updateSecondsLeft: (value: number) => void;
+  updateChallengeSecondsLeft: (value: number) => void;
+}
+
 /**
  * A custom hook to manage the game state
  * 
  * @returns state values and functions to manage the game state
  */
-export function useGameState() {
+export function useGameState(): GameState {
   // Managing State and Hooks
-  const [started, setStarted] = useState(false);
-  const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState(3);
-  const [matchedCells, setMatchedCells] = useState(0);
-  const [selectedCells, setSelectedCells] = useState([]);
-  const [challengeSecondsLeft, setChallengeSecondsLeft] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(10);
-  const [blueCells, setBlueCells] = useState(
+  const [started, setStarted] = useState<boolean>(false);
+  const [incorrectGuessesRemaining, setIncorrectGuessesRemaining] = useState<number>(3);
+  const [matchedCells, setMatchedCells] = useState<number>(0);
+  const [selectedCells, setSelectedCells] = useState<number[]>([]);
+  const [challengeSecondsLeft, setChallengeSecondsLeft] = useState<number>(0);
+  const [secondsLeft, setSecondsLeft] = useState<number>(10);
+  const [blueCells, setBlueCells] = useState<number[]>(
     utils.shuffle(utils.range(1, 25)).slice(0, 6)
   );
 
   useEffect(() => {
-    if (started === true && challengeSecondsLeft > 0) {
+    if (started && challengeSecondsLeft > 0) {
       const timerId = setTimeout(() => {
         setChallengeSecondsLeft(challengeSecondsLeft - 1);
       }, 1000);
       return () => clearTimeout(timerId);
     }
 
-    if (started === true && challengeSecondsLeft === 0 && secondsLeft > 0) {
+    if (started && challengeSecondsLeft === 0 && secondsLeft > 0) {
       const timerId = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1);
       }, 1000);
@@ -44,7 +59,7 @@ export function useGameState() {
     setBlueCells(utils.shuffle(utils.range(1, 25)).slice(0, 6));
   };
 
-  const setCellClick = (number) => {
+  const setCellClick = (number: number) => {
     // Add the selected number to the set of selected cells
     setSelectedCells(selectedCells.concat(number));
 
@@ -56,15 +71,15 @@ export function useGameState() {
     }
   }
 
-  const updateStarted = (value) => {
+  const updateStarted = (value: boolean) => {
     setStarted(value);
   };
 
-  const updateSecondsLeft = (value) => {
+  const updateSecondsLeft = (value: number) => {
     setSecondsLeft(value);
   }
 
-  const updateChallengeSecondsLeft = (value) => {
+  const updateChallengeSecondsLeft = (value: number) => {
     setChallengeSecondsLeft(value);
   }
 
