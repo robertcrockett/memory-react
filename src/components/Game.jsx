@@ -1,7 +1,7 @@
 import React from "react";
 import { MemoizedCell } from "./Cell";
 import { MemoizedFooter } from "./Footer";
-import { utils } from "../shared/constants";
+import { utils } from "../shared/constants.ts";
 import PropTypes from "prop-types";
 
 /**
@@ -28,7 +28,7 @@ function Game({
             key={number}
             cellValue={number}
             cellStatus={cellStatus}
-            isBlue={selected_cells.includes(number) ? true : false}
+            isBlue={selected_cells.includes(number)}
             onClick={onCellClick}
           />
         ))}
