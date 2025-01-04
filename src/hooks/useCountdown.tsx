@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useCountdown = (initialValue) => {
-  const [countdown, setCountdown] = useState(initialValue);
+const useCountdown = (initialValue: number): number => {
+  const [countdown, setCountdown] = useState<number>(initialValue);
 
   useEffect(() => {
     const interval = setInterval(() => {
