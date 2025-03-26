@@ -1,65 +1,78 @@
-import { useGameState } from "../hooks/useGameState";
-import { MemoizedGame } from "./Game";
+import {useCallback, useMemo} from "react";
+import {useGameState} from "../hooks/useGameState";
+import {MemoizedGame} from "./Game";
 import "./GameApp.css";
 
 /**
  * Game App Component
- * 
+ *
  * @returns A JSX object representing the Game App
  */
 function GameApp() {
-  const { started, incorrectGuessesRemaining, matchedCells, selectedCells, challengeSecondsLeft, secondsLeft, blueCells, setInitialGameState, setCellClick } = useGameState();
+  const {
+    started,
+    incorrectGuessesRemaining,
+    matchedCells,
+    selectedCells,
+    challengeSecondsLeft,
+    secondsLeft,
+    blueCells,
+    setInitialGameState,
+    setCellClick
+  } = useGameState();
 
-  const gameStatus =
-    // Nested ternary operators. This is less readable then if/else statement (IMO)
-    started === false
-      ? "new"
-      : matchedCells === blueCells.length
-      ? "won"
-      : challengeSecondsLeft > 0
-      ? "challenge"
-      : secondsLeft === 0 || incorrectGuessesRemaining === 0
-      ? "lost"
-      : "active";
+  const gameStatus = useMemo(() => {
+    if (started === false) return "new";
+    if (matchedCells === blueCells.length) return "won";
+    if (challengeSecondsLeft > 0) return "challenge";
+    if (secondsLeft === 0 || incorrectGuessesRemaining === 0) return "lost";
+    return "active";
+  }, [started, matchedCells, blueCells.length, challengeSecondsLeft, secondsLeft, incorrectGuessesRemaining]);
 
-  const cellStatus = (number) => {
-    // TODO: Game State will drive logic here. For example, if the game is in a state where blue cells should
-    // display, then only blue and unselected will display. While the game is running, cells can be selected.
-    if (gameStatus === "challenge") {
-      return blueCells.includes(number) ? "blue" : "unselected";
-    }
 
-    // If the cell has not been selected yet
-    if (!selectedCells.includes(number)) {
-      return "unselected";
-    }
+  const cellStatus = useCallback(
+    (number) => {
+      // If the game is in the challenge phase, return the appropriate cell status
+      if (gameStatus === "challenge") {
+        return blueCells.includes(number) ? "blue" : "unselected";
+      }
 
-    // If the randomized blue cells do not contain the cell selected during an active game
-    if (!blueCells.includes(number)) {
-      return "incorrect";
-    }
+      // If the cell has not been selected yet
+      if (!selectedCells.includes(number)) {
+        return "unselected";
+      }
 
-    // Otherwise return a correct guess
-    return "correct";
-  };
+      // If the randomized blue cells do not contain the cell selected during an active game
+      if (!blueCells.includes(number)) {
+        return "incorrect";
+      }
 
-  const onStartClick = () => {
+      // Otherwise return a correct guess
+      return "correct";
+    },
+    [gameStatus, blueCells, selectedCells]
+  );
+
+  const onStartClick = useCallback(() => {
     setInitialGameState();
-  };
+  }, [setInitialGameState]);
 
-  const onCellClick = (number) => {
-    // If the game has yet to be initialized and is not currently active, ignore any clicks
-    if (gameStatus === "new" || gameStatus !== "active") {
-      return;
-    }
+  const onCellClick = useCallback(
+    (number) => {
+      // If the game has yet to be initialized and is not currently active, ignore any clicks
+      if (gameStatus === "new" || gameStatus !== "active") {
+        return;
+      }
 
-    // If the cell has already been selected
-    if (selectedCells.includes(number)) {
-      return;
-    }
+      // If the cell has already been selected
+      if (selectedCells.includes(number)) {
+        return;
+      }
 
-    setCellClick(number);
-  };
+      setCellClick(number);
+    },
+    [gameStatus, selectedCells, setCellClick]
+  );
 
   return (
     <div className='game' data-testid='game'>
