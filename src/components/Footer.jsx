@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  * @returns A JSX button object representing a Footer.
  */
 function Footer({ gameStatus, challengeSecondsLeft, secondsLeft, onClick }) {
-  const displayMessage = () => {
+  const displayMessage = useMemo(() => {
     switch (gameStatus) {
       case "challenge":
         return messages.start;
@@ -19,39 +19,36 @@ function Footer({ gameStatus, challengeSecondsLeft, secondsLeft, onClick }) {
         return messages.lost;
       case "won":
         return messages.won;
-
       default:
         return messages.initial;
     }
-  };
+  }, [gameStatus]);
 
-  const displayTimer = () => {
+  const displayTimer = useMemo(() => {
     if (gameStatus === "challenge") {
       return challengeSecondsLeft;
     }
-
     return secondsLeft;
-  };
+  }, [gameStatus, challengeSecondsLeft, secondsLeft]);
 
   return (
-    <>
-      <div className='footer' data-testid='footer'>
-        <div className='message' data-testid='message'>{displayMessage()}</div>
-        {gameStatus !== "challenge" && gameStatus !== "active" ? (
-          <button
-            className='button'
-            data-testid='start_button'
-            onClick={onClick}
-          >
-            {initial_btn}
-          </button>
-        ) : (
-          <div className='timer' data-testid='timer'>
-            {displayTimer()}
-          </div>
-        )}
-      </div>
-    </>
+    <div className='footer' data-testid='footer'>
+      <div className='message' data-testid='message'>{displayMessage}</div>
+      {gameStatus !== "challenge" && gameStatus !== "active" ? (
+        <button
+          className='button'
+          data-testid='start_button'
+          onClick={onClick}
+          title="Start the game"
+        >
+          {initial_btn}
+        </button>
+      ) : (
+        <div className='timer' data-testid='timer'>
+          {displayTimer}
+        </div>
+      )}
+    </div>
   );
 }
 
