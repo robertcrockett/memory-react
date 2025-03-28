@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -9,6 +9,10 @@ import PropTypes from "prop-types";
  * @returns A JSX button object representing a Cell.
  */
 function Cell({ cellStatus, cellValue, onClick }) {
+  const handleClick = useCallback(() => {
+    onClick(cellValue, cellStatus(cellValue));
+  }, [cellValue, cellStatus, onClick]);
+
   return (
     <button
       className='cell'
@@ -17,7 +21,8 @@ function Cell({ cellStatus, cellValue, onClick }) {
         width: "20%",
         backgroundColor: colors[cellStatus(cellValue)],
       }}
-      onClick={() => onClick(cellValue, cellStatus(cellValue))}
+      onClick={handleClick}
+      title={`Cell ${cellValue} is ${cellStatus(cellValue)}`}
     ></button>
   );
 }
