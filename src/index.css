@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+/* Cell component styles */
+.cell {
+  width: 20%;
+}
+
+.cell.unselected {
+  background-color: white;
+}
+
+.cell.blue {
+  background-color: lightblue;
+}
+
+.cell.correct {
+  background-color: lightgreen;
+}
+
+.cell.incorrect {
+  background-color: lightcoral;
+}

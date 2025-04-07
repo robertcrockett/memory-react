@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
+import "../styles/Cell.css";
 
 /**
  * Cell Component
@@ -15,12 +16,8 @@ function Cell({ cellStatus, cellValue, onClick }) {
 
   return (
     <button
-      className='cell'
+      className={`cell ${cellStatus(cellValue)}`}
       data-testid='cell'
-      style={{
-        width: "20%",
-        backgroundColor: colors[cellStatus(cellValue)],
-      }}
       onClick={handleClick}
       title={`Cell ${cellValue} is ${cellStatus(cellValue)}`}
     ></button>
@@ -35,11 +32,3 @@ Cell.propTypes = {
 
 // Export the Cell component
 export const MemoizedCell = React.memo(Cell);
-
-// Colors array representing the various states of the Cell
-const colors = {
-  unselected: "white",
-  blue: "lightblue",
-  correct: "lightgreen",
-  incorrect: "lightcoral",
-};
