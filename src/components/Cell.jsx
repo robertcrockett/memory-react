@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
-import "../styles/Cell.css";
+import "../index.css";
 
 /**
  * Cell Component
